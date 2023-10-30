@@ -5,5 +5,5 @@ export enum HttpStatus {
 
 export enum HttpMessage {
     ERROR = 'Server internal error',
-    SUCCESS = 'Server Response success'
+    SUCCESS = 'Server response success'
 }
