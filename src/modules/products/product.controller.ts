@@ -20,7 +20,7 @@ export class ProductController {
     }
 
     @Post()
-    createProduct(@Body() productDto: ProductDto): ResponseData<ProductDto> {
+    createProduct(@Body() productDto: ProductDto): ResponseData<Product> {
         try {
             return new ResponseData<Product>(this.productService.createProduct(productDto), HttpStatus.SUCCESS, HttpMessage.SUCCESS)            
         } catch (error) {
@@ -38,11 +38,11 @@ export class ProductController {
     }
 
     @Put('/:id')
-    updatreProduct(): ResponseData<string> {
+    updatreProduct(@Body() productDto: ProductDto, @Param('id') id: number): ResponseData<Product> {
         try {
-            return new ResponseData<string>(this.productService.updatreProduct(), HttpStatus.SUCCESS, HttpMessage.SUCCESS)            
+            return new ResponseData<Product>(this.productService.updateProduct(productDto, id), HttpStatus.SUCCESS, HttpMessage.SUCCESS)            
         } catch (error) {
-            return new ResponseData<string>(null, HttpStatus.ERROR, HttpMessage.ERROR)
+            return new ResponseData<Product>(null, HttpStatus.ERROR, HttpMessage.ERROR)
         }
     }
 
