@@ -38,7 +38,13 @@ export class ProductService {
         return this.products[index]
     }
 
-    deleteProduct(): string {
-        return 'Delete Product'
+    deleteProduct(id: number): boolean {
+        const index = this.products.findIndex(item => item.id === Number(id))
+        if (index !== -1) {
+            this.products.splice(index, 1)
+            return true            
+        } else {
+            return false
+        }
     }
 }
