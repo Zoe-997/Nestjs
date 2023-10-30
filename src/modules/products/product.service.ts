@@ -1,22 +1,29 @@
 import { Injectable } from "@nestjs/common";
 
 import { Product } from "src/models/product.model";
+import { ProductDto } from 'src/dto/product.dto';
 
 @Injectable()
 
 export class ProductService {
-    private product: Product[] = [
+    private products: Product[] = [
         {id: 1, categoryId: 2, price: 80, productName: 'Rice'},
         {id: 1, categoryId: 2, price: 100, productName: 'Sticky rice'},
         {id: 1, categoryId: 2, price: 70, productName: 'Potato'}
     ]
 
     getProduct(): Product[] {
-        return this.product
+        return this.products
     }
 
-    createProduct(): string {
-        return 'Create product'
+    createProduct(productDto: ProductDto): Product {
+        const product: Product = {
+            id: Math.random(),
+            ...productDto
+        }
+
+        this.products.push(product)
+        return product
     }
 
     detailProduct(id: number): Product {
